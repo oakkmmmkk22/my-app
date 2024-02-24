@@ -55,10 +55,10 @@ export default function Product(){
         }
     }
     const show_products = product.map((item)=> {
-        return (<tr key={item.id}><td>{item.id}</td><td>{item.name}</td>
+        return (<tr key={item._id}><td>{item._id}</td><td>{item.name}</td>
         <td>{item.price}</td>
-        <td><button onClick={onDelete.bind(this, item.id)}>delete</button></td>
-        <td><button onClick={onUpdate.bind(this, item.id)}>OK ot Edit</button></td>
+        <td><button onClick={onDelete.bind(this, item._id)}>delete</button></td>
+        <td><button onClick={onUpdate.bind(this, item._id)}>OK ot Edit</button></td>
         </tr>)
     })
     return (<div>
