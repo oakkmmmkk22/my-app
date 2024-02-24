@@ -37,10 +37,28 @@ export default function Product(){
             console.log(id)
         })
     }
+    const onUpdate=(id)=>{
+        const data={
+            // id:{id},
+            name:myInputRef1.current.value,
+            price:myInputRef2.current.value
+        }
+        const names = myInputRef1.current.value
+        const price = myInputRef2.current.value
+        if (names != "" && price != "") {
+            axios.put("http://127.0.0.1:5000/products/" + id, data)
+            .then((response) => {
+                setProduct(response.data);
+            });
+            myInputRef1.current.value = null
+            myInputRef2.current.value = null
+        }
+    }
     const show_products = product.map((item)=> {
         return (<tr key={item.id}><td>{item.id}</td><td>{item.name}</td>
         <td>{item.price}</td>
         <td><button onClick={onDelete.bind(this, item.id)}>delete</button></td>
+        <td><button onClick={onUpdate.bind(this, item.id)}>OK ot Edit</button></td>
         </tr>)
     })
     return (<div>
