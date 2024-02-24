@@ -18,3 +18,11 @@ export default function Product(){
         </ul>
     </>)
 }
+
+// function Product(){
+//     return <p>
+//         oak
+//     </p>
+// }
+
+// export default Product;
