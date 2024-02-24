@@ -13,8 +13,8 @@ export default function Product(){
           })
     },[])
     const onAddProduct=()=>{
-        console.log(myInputRef1.current.data)
-        console.log(myInputRef2.current.data)
+        console.log(myInputRef1.current.value)
+        console.log(myInputRef2.current.value)
         const data={
             name:myInputRef1.current.value,
             price:myInputRef2.current.value
@@ -30,15 +30,23 @@ export default function Product(){
             myInputRef2.current.value = null
         }
     }
+    const onDelete=(id)=>{
+        axios.delete("http://127.0.0.1:5000/products/"+id)
+        .then((response) => {
+            setProduct(response.data);
+            console.log(id)
+        })
+    }
     const show_products = product.map((item)=> {
         return (<tr key={item.id}><td>{item.id}</td><td>{item.name}</td>
         <td>{item.price}</td>
-        <td><button>delete</button></td>
+        <td><button onClick={onDelete.bind(this, item.id)}>delete</button></td>
         </tr>)
     })
     return (<div>
         <table border='1'><thead><tr><td>id</td><td>name</td><td>price</td><td></td></tr></thead>
-        <tbody>{show_products}</tbody></table>
+        <tbody>{show_products}</tbody>
+        </table>
         Product name : <input type="text" name ='product_name' ref={myInputRef1}/>
         <br/>
         Price : <input type="text" name ='product_price' ref={myInputRef2}/>
